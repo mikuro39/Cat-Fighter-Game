@@ -24,8 +24,8 @@ playing them.
 - As a user, I want to view my cat inventory
 - As a user, I want to be able to collect rare
 characters
-- As a user, I want to be able to collect a new cat
+- As a user, I want to be able to collect multiple cats
 and add it to my inventory of cats
-- As a user, I want to be able to collect items
-that can be used to upgrade my cats in battle
+- As a user, I want to be able to use items to upgrade
+- my cats in battle
   
