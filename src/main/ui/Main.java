@@ -2,9 +2,9 @@ package ui;
 
 import model.*;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
+//main class for the game's ui
 public class Main {
     private static CatCollection catCollection = new CatCollection();
     private static Scanner scanner;

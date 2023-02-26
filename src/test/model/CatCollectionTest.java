@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-//TODO: class level comment
+//tests for the cat collection class
 public class CatCollectionTest {
     private CatCollection cc;
 

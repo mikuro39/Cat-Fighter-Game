@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
+//a fight between the cat inventory and a bot
 public class Fight {
     private CatCollection catCollection;
     private Bot bot;

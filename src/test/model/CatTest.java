@@ -5,17 +5,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+//tests for the cat class
 public class CatTest {
-
-    private String name;
-    private String color;
-    private int rarity;
-    private int size;
-    private int power;
-    private int hp;
     private String[] possibleColors = {"black", "white", "orange", "gray", "brown", "blue", "pink", "rainbow"};
     private Cat cat;
-    private Cat rarecat;
+    private Cat rareCat;
 
     //REQUIRES: rarity >= 1
     //MODIFIES: this
@@ -23,7 +17,7 @@ public class CatTest {
     @BeforeEach
     void runBefore() {
         cat = new Cat("generic cat", 1);
-        rarecat = new Cat("rare", 5);
+        rareCat = new Cat("rare", 5);
     }
 
     @Test
@@ -41,15 +35,15 @@ public class CatTest {
         cat.upgrade(upgradeItem);
         assertEquals(cat.getHP(), 2);
         assertEquals(cat.getPower(), 2);
-        rarecat.upgrade(upgradeItem);
-        assertEquals(rarecat.getHP(), 10);
-        assertEquals(rarecat.getPower(), 10);
+        rareCat.upgrade(upgradeItem);
+        assertEquals(rareCat.getHP(), 10);
+        assertEquals(rareCat.getPower(), 10);
     }
 
     @Test
     void testGetName() {
         assertEquals(cat.getName(), "generic cat");
-        assertEquals(rarecat.getName(), "rare");
+        assertEquals(rareCat.getName(), "rare");
     }
 
     @Test
@@ -59,6 +53,7 @@ public class CatTest {
         for (String c : possibleColors) {
             if (c.equals(color)) {
                 contains = true;
+                break;
             }
         }
         assertTrue(contains);
@@ -67,25 +62,25 @@ public class CatTest {
     @Test
     void testGetRarity() {
         assertEquals(cat.getRarity(), 1);
-        assertEquals(rarecat.getRarity(), 5);
+        assertEquals(rareCat.getRarity(), 5);
     }
 
     @Test
     void testGetSize() {
         assertEquals(cat.getSize(), 1);
-        assertEquals(rarecat.getSize(), 1);
+        assertEquals(rareCat.getSize(), 1);
     }
 
     @Test
     void testGetPower() {
         assertEquals(cat.getPower(), 1);
-        assertEquals(rarecat.getPower(), 5);
+        assertEquals(rareCat.getPower(), 5);
     }
 
     @Test
     void testGetHP() {
         assertEquals(cat.getHP(), 1);
-        assertEquals(rarecat.getHP(), 5);
+        assertEquals(rareCat.getHP(), 5);
     }
 
     @Test

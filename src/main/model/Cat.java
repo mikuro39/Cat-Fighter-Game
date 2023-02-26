@@ -1,7 +1,7 @@
 package model;
 
-import java.util.ArrayList;
 
+//contains information about an individual cat, including name, color, rarity, size, power, and hp(hit points)
 public class Cat {
     private String name;
     private String color;

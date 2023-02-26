@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-//contains
+//contains information about user's cat collection with ways to navigate the cat inventory
 public class CatCollection {
     private ArrayList<Cat> catList;
 
