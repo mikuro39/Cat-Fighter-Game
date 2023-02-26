@@ -33,7 +33,8 @@ public class Main {
         } else if (choice.equals("4")) {
             System.out.println("Thanks for playing! See you next time.");
         } else {
-            System.out.println("throw exception error");
+            System.out.println("Sorry, you entered an invalid number. Sending you back to the main menu:");
+            mainMenu();
         }
     }
 
@@ -69,7 +70,8 @@ public class Main {
         } else if (choice.equals("2")) {
             System.out.println("Thanks for playing! See you next time.");
         } else {
-            System.out.println("throw exception error");
+            System.out.println("Sorry, you entered an invalid number. Sending you back to the main menu:");
+            mainMenu();
         }
     }
 
@@ -84,7 +86,7 @@ public class Main {
             Cat cat = catCollection.findCat(c);
             getStats(cat);
             System.out.println("What would you like to do with this cat? \n1. edit name \n2. feed cat");
-            System.out.println("3. delete cat");
+            System.out.println("3. delete cat \n4. return to menu");
             editCat(cat, c);
             makeChoices();
         } else if (choice.equals("2")) {
@@ -92,7 +94,8 @@ public class Main {
         } else if (choice.equals("3")) {
             System.out.println("Thanks for playing! See you next time.");
         } else {
-            System.out.println("throw exception error");
+            System.out.println("Sorry, you entered an invalid number. Sending you back to the main menu:");
+            mainMenu();
         }
     }
 
@@ -119,14 +122,17 @@ public class Main {
         } else if (ch.equals("3")) {
             catCollection.removeCat(c);
             System.out.println("Successfully removed cat");
+        } else if (ch.equals("4")) {
+            mainMenu();
         } else {
-            System.out.println("you");
+            System.out.println("Sorry, you entered an invalid number. Sending you back to the main menu:");
+            mainMenu();
         }
     }
 
     private static Food enterFoodShop() {
         scanner = new Scanner(System.in);
-        Food food;
+        Food food = new Food(0);
         System.out.println("Please choose the type of food you would like to feed your cat!");
         System.out.println("1. Fish (+1 size)");
         System.out.println("2. Premium Fish (+5 size)");
@@ -139,8 +145,8 @@ public class Main {
         } else if (choice == 3) {
             food = new Food(10);
         } else {
-            System.out.println("error");
-            food = new Food(0);
+            System.out.println("Sorry, the choice you made is invalid.");
+            enterFoodShop();
         }
         return food;
     }
@@ -153,7 +159,7 @@ public class Main {
             Bot bot = initializeBot();
             Fight fight = new Fight(catCollection, bot);
             while (!fight.checkGameOver()) {
-                fighting(fight);
+                fighting(fight, bot);
             }
             System.out.println("The fight ended!");
             System.out.println("Here are all the cats that died in battle.");
@@ -164,7 +170,7 @@ public class Main {
                 fight.repairCats();
                 System.out.println("Your cats have been returned to your cat inventory at 1 HP. Please feed them.");
             } else if (choice3.equals("no")) {
-                System.out.println("rip");
+                System.out.println("Your cats have sadly gone to sleep...");
             }
         }
         makeChoices();
@@ -181,7 +187,8 @@ public class Main {
         } else if (choice.equals("2")) {
             System.out.println("Thanks for playing! See you next time.");
         } else {
-            System.out.println("throw exception error");
+            System.out.println("Sorry, you entered an invalid number. Sending you back to the main menu:");
+            mainMenu();
         }
     }
 
@@ -203,9 +210,10 @@ public class Main {
         return bot;
     }
 
-    private static void fighting(Fight fight) {
+    private static void fighting(Fight fight, Bot bot) {
         scanner = new Scanner(System.in);
-        fight.proceedByOneRound();
+        System.out.println("The battle is between: " + fight.getFirstCat().getName() + " and bot " + bot.getHP());
+        System.out.println(fight.proceedByOneRound());
         System.out.println("Would you like to upgrade your next cat? (yes/no)");
         String choice5 = scanner.nextLine();
         if (choice5.equals("yes")) {
@@ -222,8 +230,8 @@ public class Main {
     private static UpgradeItem makeItem() {
         scanner = new Scanner(System.in);
         UpgradeItem upgradeItem;
-        System.out.println("Choose an item to upgrade your cat with. \n 1. mini item (+1 power/hp)");
-        System.out.println("2. mega item (+5 power/hp) \n 3. crazy item (+10 power/hp)");
+        System.out.println("Choose an item to upgrade your cat with. \n1. mini item (+1 power/hp)");
+        System.out.println("2. mega item (+5 power/hp) \n3. crazy item (+10 power/hp)");
         String choice6 = scanner.nextLine();
         if (choice6.equals("1")) {
             upgradeItem = new UpgradeItem(1, 1);

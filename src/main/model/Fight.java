@@ -17,31 +17,34 @@ public class Fight {
         deadCats = new ArrayList<>();
     }
 
-    public void introduceFight(Cat cat) {
-        System.out.println("The battle is between: " + cat.getName() + " and bot " + bot.getHP());
-    }
-
+    //REQUIRES: cat collection is not empty
     //EFFECTS: proceeds one round of fight
-    public void proceedByOneRound() {
+    @SuppressWarnings("methodlength")
+    public String proceedByOneRound() {
         Cat firstCat = catCollection.findCat(0);
-        introduceFight(firstCat);
         if (firstCat.getHP() > 0 && bot.getHP() > 0) {
             bot.setHP(bot.getHP() - firstCat.getPower());
             firstCat.setHP(firstCat.getHP() - bot.getPower());
         }
         if (bot.getHP() <= 0) {
-            System.out.println("You won!");
             gameOver = true;
+            if (firstCat.getHP() <= 0) {
+                deadCats.add(firstCat);
+                catCollection.removeCat(0);
+                return "Your cat " + firstCat.getName() + " died! You won!";
+            } else {
+                return "You won!";
+            }
         } else if (firstCat.getHP() <= 0) {
             deadCats.add(firstCat);
             catCollection.removeCat(0);
-            System.out.println("Your cat " + firstCat.getName() + " died!");
             if (catCollection.catListSize() == 0) {
                 gameOver = true;
+                return "You lost!";
             }
+            return "Your cat " + firstCat.getName() + " died!";
         } else {
-            System.out.println("The bot has been knocked down to " + bot.getHP() + "!");
-            System.out.println("Your cat is at " + firstCat.getHP() + "!");
+            return "The bot has been knocked down to " + bot.getHP() + "! \n Your cat is at " + firstCat.getHP() + "!";
         }
     }
 

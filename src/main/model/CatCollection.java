@@ -1,8 +1,8 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
+//contains
 public class CatCollection {
     private ArrayList<Cat> catList;
 
@@ -15,8 +15,19 @@ public class CatCollection {
     //MODIFIES: this
     //EFFECTS: adds a cat of random rarity to catList
     public Cat addCat(String name) {
-        int rarity = (int)Math.floor(Math.random() * 5 + 1);
-        //TODO: make rarity actually scale
+        int range = (int)Math.floor(Math.random() * 15 + 1);
+        int rarity;
+        if (range <= 5) {
+            rarity = 1;
+        } else if (range <= 9) {
+            rarity = 2;
+        } else if (range <= 12) {
+            rarity = 3;
+        } else if (range <= 14) {
+            rarity = 4;
+        } else {
+            rarity = 5;
+        }
         Cat newCat = new Cat(name, rarity);
         catList.add(newCat);
         return newCat;
@@ -34,8 +45,8 @@ public class CatCollection {
         catList.add(cat);
     }
 
-    //REQUIRES: j < catList.size()
-    //EFFECTS: returns index of cat in list or -1 if not in list
+    //REQUIRES: 0 <= j < catList.size()
+    //EFFECTS: returns cat with index j in list
     public Cat findCat(int j) {
         //TODO: get rid of out of bounds error
         return catList.get(j);
@@ -57,5 +68,14 @@ public class CatCollection {
             i++;
         }
         return names;
+    }
+
+    public void addCatWithRarity(String name, int rarity) {
+        Cat cat = new Cat(name, rarity);
+        catList.add(cat);
+    }
+
+    public void addCatDebug(Cat cat) {
+        catList.add(cat);
     }
 }

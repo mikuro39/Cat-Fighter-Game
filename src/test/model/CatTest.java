@@ -45,4 +45,58 @@ public class CatTest {
         assertEquals(rarecat.getHP(), 10);
         assertEquals(rarecat.getPower(), 10);
     }
+
+    @Test
+    void testGetName() {
+        assertEquals(cat.getName(), "generic cat");
+        assertEquals(rarecat.getName(), "rare");
+    }
+
+    @Test
+    void testGetColor() {
+        String color = cat.getColor();
+        boolean contains = false;
+        for (String c : possibleColors) {
+            if (c.equals(color)) {
+                contains = true;
+            }
+        }
+        assertTrue(contains);
+    }
+
+    @Test
+    void testGetRarity() {
+        assertEquals(cat.getRarity(), 1);
+        assertEquals(rarecat.getRarity(), 5);
+    }
+
+    @Test
+    void testGetSize() {
+        assertEquals(cat.getSize(), 1);
+        assertEquals(rarecat.getSize(), 1);
+    }
+
+    @Test
+    void testGetPower() {
+        assertEquals(cat.getPower(), 1);
+        assertEquals(rarecat.getPower(), 5);
+    }
+
+    @Test
+    void testGetHP() {
+        assertEquals(cat.getHP(), 1);
+        assertEquals(rarecat.getHP(), 5);
+    }
+
+    @Test
+    void testSetHP() {
+        cat.setHP(10);
+        assertEquals(cat.getHP(), 10);
+    }
+
+    @Test
+    void testChangeName() {
+        cat.changeName("new name");
+        assertEquals(cat.getName(), "new name");
+    }
 }
