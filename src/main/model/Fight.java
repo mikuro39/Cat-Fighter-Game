@@ -22,10 +22,8 @@ public class Fight {
     @SuppressWarnings("methodlength")
     public String proceedByOneRound() {
         Cat firstCat = catCollection.findCat(0);
-        if (firstCat.getHP() > 0 && bot.getHP() > 0) {
-            bot.setHP(bot.getHP() - firstCat.getPower());
-            firstCat.setHP(firstCat.getHP() - bot.getPower());
-        }
+        bot.setHP(bot.getHP() - firstCat.getPower());
+        firstCat.setHP(firstCat.getHP() - bot.getPower());
         if (bot.getHP() <= 0) {
             gameOver = true;
             if (firstCat.getHP() <= 0) {
