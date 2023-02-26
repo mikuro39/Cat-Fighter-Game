@@ -1,38 +1,35 @@
 package model;
 
-public class Cat {
+import java.util.ArrayList;
 
+public class Cat {
     private String name;
     private String color;
     private int rarity;
     private int size;
     private int power;
     private int hp;
+    private String[] possibleColors = {"black", "white", "orange", "gray", "brown", "blue", "pink", "rainbow"};
+
 
     //REQUIRES: rarity >= 1
     //MODIFIES: this
     //EFFECTS: instantiates a cat with given name and rarity, random color, size 1, and power & hp depending on rarity
     public Cat(String name, int rarity) {
         this.name = name;
-        color = "white"; //TODO: make random
+        color = possibleColors[(int)Math.floor(Math.random() * 8)];
         this.rarity = rarity;
         size = 1;
         power = rarity;
         hp = rarity;
     }
 
-    public void changeName(String newName) {
-        this.name = newName;
-    }
-
-    //REQUIRES:
     //MODIFIES: this
     //EFFECTS: adds food's value to cat's size
     public void feedCat(Food food) {
         this.size += food.getValue();
     }
 
-    //REQUIRES:
     //MODIFIES: this
     //EFFECTS: upgrades cat's power and hp by item's power and hp multiplied by rarity
     public void upgrade(UpgradeItem upgradeItem) {
@@ -66,6 +63,10 @@ public class Cat {
 
     public void setHP(int hp) {
         this.hp = hp;
+    }
+
+    public void changeName(String newName) {
+        this.name = newName;
     }
 
 

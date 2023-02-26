@@ -3,7 +3,6 @@ package model;
 public class Food {
     private int value;
 
-    //REQUIRES:
     //MODIFIES: this
     //EFFECTS: instantiates a new Food with given value
     public Food(int value) {

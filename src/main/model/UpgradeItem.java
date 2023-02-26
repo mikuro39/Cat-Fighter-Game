@@ -4,7 +4,6 @@ public class UpgradeItem {
     private int power;
     private int hp;
 
-    //REQUIRES:
     //MODIFIES: this
     //EFFECTS: instantiates a new UpgradeItem with given power and hp
     public UpgradeItem(int power, int hp) {

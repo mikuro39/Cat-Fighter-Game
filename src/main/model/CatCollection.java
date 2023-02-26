@@ -1,51 +1,61 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class CatCollection {
     private ArrayList<Cat> catList;
 
-    //REQUIRES:
     //MODIFIES: this
     //EFFECTS: instantiates catList as a new empty ArrayList of type Cat
     public CatCollection() {
         catList = new ArrayList<>();
     }
 
-    //REQUIRES:
     //MODIFIES: this
     //EFFECTS: adds a cat of random rarity to catList
-    public void addCat(Cat cat) {
-        catList.add(cat);
-        //TODO
+    public Cat addCat(String name) {
+        int rarity = (int)Math.floor(Math.random() * 5 + 1);
+        //TODO: make rarity actually scale
+        Cat newCat = new Cat(name, rarity);
+        catList.add(newCat);
+        return newCat;
     }
 
-    //REQUIRES:
+    //REQUIRES: j < catList.size()
     //MODIFIES: this
     //EFFECTS: searches for cat in catList and removes if found
-    public void removeCat(Cat cat) {
-        for (int i = 0; i < catList.size(); i++) {
-            if (catList.get(i).getName() == cat.getName()) {
-                catList.remove(i);
-                i--;
-            }
-        }
+    public void removeCat(int j) {
+        catList.remove(j);
     }
 
-    //REQUIRES:
-    //MODIFIES:
-    //EFFECTS: returns index of cat in lisst or -1 if not in list
-    public int findCat(Cat cat) {
-        for (int i = 0; i < catList.size(); i++) {
-            if (catList.get(i).getName() == cat.getName()) {
-                return i;
-            }
-        }
+    public void addDeadCat(Cat cat) {
+        cat.setHP(1);
+        catList.add(cat);
+    }
 
-        return -1;
+    //REQUIRES: j < catList.size()
+    //EFFECTS: returns index of cat in list or -1 if not in list
+    public Cat findCat(int j) {
+        //TODO: get rid of out of bounds error
+        return catList.get(j);
     }
 
     public int catListSize() {
         return catList.size();
+    }
+
+    public ArrayList<Cat> getCatList() {
+        return catList;
+    }
+
+    public ArrayList<String> getCatNameList() {
+        ArrayList<String> names = new ArrayList<>();
+        int i = 1;
+        for (Cat cat : catList) {
+            names.add("[" + i + "] " + cat.getName());
+            i++;
+        }
+        return names;
     }
 }

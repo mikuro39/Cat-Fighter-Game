@@ -1,32 +1,74 @@
 package model;
 
-public class Fight {
-    //TODO: make it a list of cats insteaad
-    //TODO: be able to use items in game
-    private Cat cat;
-    private Bot bot;
+import java.util.ArrayList;
 
-    //REQUIRES:
+public class Fight {
+    private CatCollection catCollection;
+    private Bot bot;
+    boolean gameOver;
+    private ArrayList<Cat> deadCats;
+
     //MODIFIES: this
     //EFFECTS: instantiates a new Fight with given cat and bot
-    public Fight(Cat cat, Bot bot) {
-        this.cat = cat;
+    public Fight(CatCollection catCollection, Bot bot) {
+        this.catCollection = catCollection;
         this.bot = bot;
+        gameOver = false;
+        deadCats = new ArrayList<>();
     }
 
-    //REQUIRES:
-    //MODIFIES:
+    public void introduceFight(Cat cat) {
+        System.out.println("The battle is between: " + cat.getName() + " and bot " + bot.getHP());
+    }
+
     //EFFECTS: proceeds one round of fight
     public void proceedByOneRound() {
-        if (cat.getHP() > 0 && bot.getHP() > 0) {
-            bot.setHP(bot.getHP() - cat.getPower());
-            cat.setHP(cat.getHP() - bot.getPower());
+        Cat firstCat = catCollection.findCat(0);
+        introduceFight(firstCat);
+        if (firstCat.getHP() > 0 && bot.getHP() > 0) {
+            bot.setHP(bot.getHP() - firstCat.getPower());
+            firstCat.setHP(firstCat.getHP() - bot.getPower());
         }
         if (bot.getHP() <= 0) {
             System.out.println("You won!");
-        } else if (cat.getHP() <= 0) {
-            System.out.println("You died... choose another cat?");
+            gameOver = true;
+        } else if (firstCat.getHP() <= 0) {
+            deadCats.add(firstCat);
+            catCollection.removeCat(0);
+            System.out.println("Your cat " + firstCat.getName() + " died!");
+            if (catCollection.catListSize() == 0) {
+                gameOver = true;
+            }
+        } else {
+            System.out.println("The bot has been knocked down to " + bot.getHP() + "!");
+            System.out.println("Your cat is at " + firstCat.getHP() + "!");
         }
     }
 
+    public void upgradeCat(UpgradeItem upgradeItem) {
+        Cat firstCat = catCollection.findCat(0);
+        firstCat.upgrade(upgradeItem);
+    }
+
+    public Cat getFirstCat() {
+        return catCollection.findCat(0);
+    }
+
+    public boolean checkGameOver() {
+        return gameOver;
+    }
+
+    public void repairCats() {
+        for (Cat cat : deadCats) {
+            catCollection.addDeadCat(cat);
+        }
+    }
+
+    public ArrayList<String> showDeadCats() {
+        ArrayList<String> deadCatNames = new ArrayList<>();
+        for (Cat cat : deadCats) {
+            deadCatNames.add(cat.getName());
+        }
+        return deadCatNames;
+    }
 }
