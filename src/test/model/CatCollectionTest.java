@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-//tests for the cat collection class
+//test class for the CatCollection class
 public class CatCollectionTest {
     private CatCollection cc;
 

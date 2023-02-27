@@ -1,6 +1,6 @@
 package model;
 
-//food is an item used to increase the cat's size
+//represents a food item used to increase a Cat's size
 public class Food {
     private int value;
 

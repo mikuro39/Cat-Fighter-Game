@@ -5,15 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-//tests for the cat class
+//test class for the Cat class
 public class CatTest {
     private String[] possibleColors = {"black", "white", "orange", "gray", "brown", "blue", "pink", "rainbow"};
     private Cat cat;
     private Cat rareCat;
 
-    //REQUIRES: rarity >= 1
-    //MODIFIES: this
-    //EFFECTS: instantiates a cat with given name and rarity, random color, size 1, and power & hp depending on rarity
     @BeforeEach
     void runBefore() {
         cat = new Cat("generic cat", 1);

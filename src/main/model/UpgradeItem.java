@@ -1,6 +1,6 @@
 package model;
 
-//an upgrade item gives the cat an increase in power and hp during battles
+//represents an upgrade item that gives a Cat an increase in power and hp a fight
 public class UpgradeItem {
     private int power;
     private int hp;

@@ -1,7 +1,7 @@
 package model;
 
 
-//contains information about an individual cat, including name, color, rarity, size, power, and hp(hit points)
+//represents a Cat with name, color, rarity, size, power, and hp(hit points)
 public class Cat {
     private String name;
     private String color;
@@ -14,7 +14,7 @@ public class Cat {
 
     //REQUIRES: rarity >= 1
     //MODIFIES: this
-    //EFFECTS: instantiates a cat with given name and rarity, random color, size 1, and power & hp depending on rarity
+    //EFFECTS: instantiates a Cat with given name and rarity, random color, size 1, and power & hp depending on rarity
     public Cat(String name, int rarity) {
         this.name = name;
         color = possibleColors[(int)Math.floor(Math.random() * 8)];

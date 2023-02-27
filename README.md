@@ -3,12 +3,12 @@
 ## The best game you will ever play.
 
 Cat Fighter Game is a game where users will be able to 
-collect cats with varying rarities. They will all have
+collect cats with varying rarities. Each cat has
 unique stats and users will be able to feed them, 
-upgrade them, and customize their names and colors.
+upgrade them during fights, and customize their names.
 These cats are born to fight. Users will be able to
 build up their cat fighter team to compete against
-**bots** and use abilities in-round to buff their 
+**bots** and use items in-round to buff their 
 cats' stats. This game is geared towards those who
 enjoy cats and fighter games who are looking for
 a game to collect cute characters. I personally like 
@@ -20,12 +20,13 @@ playing them.
 ## User Stories
 
 
-- As a user, I want to be able to customize my cats
+- As a user, I want to be able to customize my cats by 
+changing their name and size
 - As a user, I want to view my cat inventory
-- As a user, I want to be able to collect rare
-characters
+- As a user, I want to be able to collect cats with different
+rarities
 - As a user, I want to be able to collect multiple cats
 and add it to my inventory of cats
 - As a user, I want to be able to use items to upgrade
-- my cats in battle
+my cats' stats during battles
   

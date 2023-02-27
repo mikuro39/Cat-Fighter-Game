@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-//contains information about user's cat collection with ways to navigate the cat inventory
+//represents a collection of Cats
 public class CatCollection {
     private ArrayList<Cat> catList;
 
@@ -40,6 +40,8 @@ public class CatCollection {
         catList.remove(j);
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds a cat to the collection with HP at 1
     public void addDeadCat(Cat cat) {
         cat.setHP(1);
         catList.add(cat);
@@ -48,7 +50,6 @@ public class CatCollection {
     //REQUIRES: 0 <= j < catList.size()
     //EFFECTS: returns cat with index j in list
     public Cat findCat(int j) {
-        //TODO: get rid of out of bounds error
         return catList.get(j);
     }
 
@@ -60,6 +61,7 @@ public class CatCollection {
         return catList;
     }
 
+    //EFFECTS: returns an ArrayList containing all cats' names
     public ArrayList<String> getCatNameList() {
         ArrayList<String> names = new ArrayList<>();
         int i = 1;
@@ -70,11 +72,16 @@ public class CatCollection {
         return names;
     }
 
+    //REQUIRES: 1 <= rarity <= 5
+    //MODIFIES: this
+    //EFFECTS: adds a new cat to the collection with given name and rarity
     public void addCatWithRarity(String name, int rarity) {
         Cat cat = new Cat(name, rarity);
         catList.add(cat);
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds a Cat to the collection
     public void addCatDebug(Cat cat) {
         catList.add(cat);
     }

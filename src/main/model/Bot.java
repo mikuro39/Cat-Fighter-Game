@@ -1,6 +1,6 @@
 package model;
 
-//generates the bots that are used in fights
+//represents a Bot with power and hp that is used during fights
 public class Bot {
     private int power;
     private int hp;

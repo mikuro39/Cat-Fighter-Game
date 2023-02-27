@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-//tests for the fight class
+//test class for the Fight class
 public class FightTest {
     private Fight fight;
     private CatCollection cc;
@@ -18,7 +18,6 @@ public class FightTest {
         fight = new Fight(cc, bot);
     }
 
-    //EFFECTS: proceeds one round of fight
     @Test
     void testProceedByOneRound() {
         cc.addCatWithRarity("cat 1", 1);
