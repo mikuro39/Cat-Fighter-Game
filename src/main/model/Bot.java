@@ -2,7 +2,7 @@ package model;
 
 //represents a Bot with power and hp that is used during fights
 public class Bot {
-    private int power;
+    private final int power;
     private int hp;
 
     //MODIFIES: this

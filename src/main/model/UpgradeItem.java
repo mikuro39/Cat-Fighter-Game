@@ -2,8 +2,8 @@ package model;
 
 //represents an upgrade item that gives a Cat an increase in power and hp a fight
 public class UpgradeItem {
-    private int power;
-    private int hp;
+    private final int power;
+    private final int hp;
 
     //MODIFIES: this
     //EFFECTS: instantiates a new UpgradeItem with given power and hp

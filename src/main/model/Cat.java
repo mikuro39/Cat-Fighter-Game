@@ -4,19 +4,18 @@ package model;
 //represents a Cat with name, color, rarity, size, power, and hp(hit points)
 public class Cat {
     private String name;
-    private String color;
-    private int rarity;
+    private final String color;
+    private final int rarity;
     private int size;
     private int power;
     private int hp;
-    private String[] possibleColors = {"black", "white", "orange", "gray", "brown", "blue", "pink", "rainbow"};
-
 
     //REQUIRES: rarity >= 1
     //MODIFIES: this
     //EFFECTS: instantiates a Cat with given name and rarity, random color, size 1, and power & hp depending on rarity
     public Cat(String name, int rarity) {
         this.name = name;
+        String[] possibleColors = {"black", "white", "orange", "gray", "brown", "blue", "pink", "rainbow"};
         color = possibleColors[(int)Math.floor(Math.random() * 8)];
         this.rarity = rarity;
         size = 1;

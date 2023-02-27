@@ -155,7 +155,7 @@ public class CatCollectionTest {
         assertEquals(cc.catListSize(), 4);
         assertEquals(cc.findCat(3).getName(), "cat 4");
         Cat cat5 = new Cat ("cat 5", 5);
-        cc.addCatDebug(cat2);
+        cc.addCatDebug(cat5);
         assertEquals(cc.catListSize(), 5);
         assertEquals(cc.findCat(4).getName(), "cat 5");
     }

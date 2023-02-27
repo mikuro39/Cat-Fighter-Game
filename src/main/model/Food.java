@@ -2,7 +2,7 @@ package model;
 
 //represents a food item used to increase a Cat's size
 public class Food {
-    private int value;
+    private final int value;
 
     //MODIFIES: this
     //EFFECTS: instantiates a new Food with given value
