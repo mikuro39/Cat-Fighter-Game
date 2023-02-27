@@ -33,8 +33,39 @@ public class CatCollectionTest {
         cc.addCat("cat 5");
         assertEquals(cc.catListSize(), 5);
         assertEquals(cc.findCat(4).getName(), "cat 5");
-
-
+        cc.addCat("cat 6");
+        cc.addCat("cat 7");
+        cc.addCat("cat 8");
+        cc.addCat("cat 9");
+        cc.addCat("cat 10");
+        cc.addCat("cat 11");
+        cc.addCat("cat 12");
+        cc.addCat("cat 13");
+        cc.addCat("cat 14");
+        cc.addCat("cat 15");
+        cc.addCat("cat 16");
+        cc.addCat("cat 17");
+        cc.addCat("cat 18");
+        cc.addCat("cat 19");
+        cc.addCat("cat 20");
+        cc.addCat("cat 21");
+        cc.addCat("cat 22");
+        cc.addCat("cat 23");
+        cc.addCat("cat 24");
+        cc.addCat("cat 25");
+        cc.addCat("cat 26");
+        cc.addCat("cat 27");
+        cc.addCat("cat 28");
+        cc.addCat("cat 29");
+        cc.addCat("cat 30");
+        cc.addCat("cat 31");
+        cc.addCat("cat 32");
+        cc.addCat("cat 33");
+        cc.addCat("cat 34");
+        cc.addCat("cat 35");
+        assertEquals(cc.catListSize(), 35);
+        assertEquals(cc.getCatList().size(), 35);
+        assertEquals(cc.findCat(20).getName(), "cat 21");
     }
 
     @Test
