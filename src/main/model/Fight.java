@@ -47,7 +47,7 @@ public class Fight {
     //REQUIRES: catCollection is not empty
     //MODIFIES: this
     //EFFECTS: adds a cat to deadCats and removes that Cat from the collection
-    public void removeDeadCat(Cat cat) {
+    private void removeDeadCat(Cat cat) {
         deadCats.add(cat);
         catCollection.removeCat(0);
     }

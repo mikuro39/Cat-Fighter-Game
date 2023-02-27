@@ -77,7 +77,7 @@ public class FightTest {
     }
 
     @Test
-    void upgradeCat() {
+    void testUpgradeCat() {
         cc.addCat("cat 1", 1);
         UpgradeItem upgradeItem = new UpgradeItem(1, 1);
         fight.upgradeCat(upgradeItem);
@@ -90,7 +90,7 @@ public class FightTest {
     }
 
     @Test
-    void getFirstCat() {
+    void testGetFirstCat() {
         Cat cat = new Cat("test", 1);
         cc.addCatDebug(cat);
         assertEquals(fight.getFirstCat(), cat);

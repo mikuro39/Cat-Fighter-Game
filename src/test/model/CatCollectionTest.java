@@ -136,4 +136,27 @@ public class CatCollectionTest {
         assertEquals(catList.get(1), "[2] 2");
     }
 
+    @Test
+    void testAddCatDebug() {
+        Cat cat1 = new Cat ("cat 1", 1);
+        cc.addCatDebug(cat1);
+        assertEquals(cc.catListSize(), 1);
+        assertEquals(cc.findCat(0).getName(), "cat 1");
+        Cat cat2 = new Cat ("cat 2", 2);
+        cc.addCatDebug(cat2);
+        assertEquals(cc.catListSize(), 2);
+        assertEquals(cc.findCat(1).getName(), "cat 2");
+        Cat cat3 = new Cat ("cat 3", 3);
+        cc.addCatDebug(cat3);
+        assertEquals(cc.catListSize(), 3);
+        assertEquals(cc.findCat(2).getName(), "cat 3");
+        Cat cat4 = new Cat ("cat 4", 4);
+        cc.addCatDebug(cat4);
+        assertEquals(cc.catListSize(), 4);
+        assertEquals(cc.findCat(3).getName(), "cat 4");
+        Cat cat5 = new Cat ("cat 5", 5);
+        cc.addCatDebug(cat2);
+        assertEquals(cc.catListSize(), 5);
+        assertEquals(cc.findCat(4).getName(), "cat 5");
+    }
 }
