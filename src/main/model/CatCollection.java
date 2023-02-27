@@ -14,20 +14,7 @@ public class CatCollection {
 
     //MODIFIES: this
     //EFFECTS: adds a cat of random rarity to catList
-    public Cat addCat(String name) {
-        int range = (int)Math.floor(Math.random() * 15 + 1);
-        int rarity;
-        if (range <= 5) {
-            rarity = 1;
-        } else if (range <= 9) {
-            rarity = 2;
-        } else if (range <= 12) {
-            rarity = 3;
-        } else if (range <= 14) {
-            rarity = 4;
-        } else {
-            rarity = 5;
-        }
+    public Cat addCat(String name, int rarity) {
         Cat newCat = new Cat(name, rarity);
         catList.add(newCat);
         return newCat;
@@ -70,14 +57,6 @@ public class CatCollection {
             i++;
         }
         return names;
-    }
-
-    //REQUIRES: 1 <= rarity <= 5
-    //MODIFIES: this
-    //EFFECTS: adds a new cat to the collection with given name and rarity
-    public void addCatWithRarity(String name, int rarity) {
-        Cat cat = new Cat(name, rarity);
-        catList.add(cat);
     }
 
     //MODIFIES: this

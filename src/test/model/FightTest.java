@@ -20,7 +20,7 @@ public class FightTest {
 
     @Test
     void testProceedByOneRound() {
-        cc.addCatWithRarity("cat 1", 1);
+        cc.addCat("cat 1", 1);
         String result = fight.proceedByOneRound();
         assertEquals(cc.catListSize(), 0);
         assertEquals(bot.getHP(), 0);
@@ -33,7 +33,7 @@ public class FightTest {
         cc = new CatCollection();
         bot = new Bot(1, 1);
         fight = new Fight(cc, bot);
-        cc.addCatWithRarity("cat 5", 5);
+        cc.addCat("cat 5", 5);
         result = fight.proceedByOneRound();
         assertEquals(cc.findCat(0).getHP(), 4);
         assertEquals(bot.getHP(), -4);
@@ -42,7 +42,7 @@ public class FightTest {
         cc = new CatCollection();
         bot = new Bot(10, 10);
         fight = new Fight(cc, bot);
-        cc.addCatWithRarity("cat 1", 1);
+        cc.addCat("cat 1", 1);
         result = fight.proceedByOneRound();
         assertEquals(cc.catListSize(), 0);
         assertEquals(bot.getHP(), 9);
@@ -53,8 +53,8 @@ public class FightTest {
         cc = new CatCollection();
         bot = new Bot(10, 10);
         fight = new Fight(cc, bot);
-        cc.addCatWithRarity("cat 1", 1);
-        cc.addCatWithRarity("cat 5", 5);
+        cc.addCat("cat 1", 1);
+        cc.addCat("cat 5", 5);
         result = fight.proceedByOneRound();
         assertEquals(cc.catListSize(), 1);
         assertEquals(cc.findCat(0).getHP(), 5);
@@ -68,7 +68,7 @@ public class FightTest {
         cc = new CatCollection();
         bot = new Bot(1, 10);
         fight = new Fight(cc, bot);
-        cc.addCatWithRarity("cat 1", 5);
+        cc.addCat("cat 1", 5);
         result = fight.proceedByOneRound();
         assertEquals(cc.findCat(0).getHP(), 4);
         assertEquals(bot.getHP(), 5);
@@ -78,7 +78,7 @@ public class FightTest {
 
     @Test
     void upgradeCat() {
-        cc.addCatWithRarity("cat 1", 1);
+        cc.addCat("cat 1", 1);
         UpgradeItem upgradeItem = new UpgradeItem(1, 1);
         fight.upgradeCat(upgradeItem);
         assertEquals(fight.getFirstCat().getHP(), 2);

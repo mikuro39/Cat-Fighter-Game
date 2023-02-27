@@ -53,7 +53,20 @@ public class FighterGame {
         System.out.println("What would you like to name your cat? ");
         String name = scanner.nextLine();
         System.out.println("generating new cat...");
-        Cat c = catCollection.addCat(name);
+        int range = (int)Math.floor(Math.random() * 15 + 1);
+        int rarity;
+        if (range <= 5) {
+            rarity = 1;
+        } else if (range <= 9) {
+            rarity = 2;
+        } else if (range <= 12) {
+            rarity = 3;
+        } else if (range <= 14) {
+            rarity = 4;
+        } else {
+            rarity = 5;
+        }
+        Cat c = catCollection.addCat(name, rarity);
         System.out.println("Check out your new cat!");
         System.out.println("It has name " + name + ", color " + c.getColor()
                 + ", and rarity " + c.getRarity());
