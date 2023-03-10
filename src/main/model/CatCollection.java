@@ -13,7 +13,7 @@ public class CatCollection {
     }
 
     //MODIFIES: this
-    //EFFECTS: adds a cat of random rarity to catList
+    //EFFECTS: adds a cat of given rarity to catList
     public Cat addCat(String name, int rarity) {
         Cat newCat = new Cat(name, rarity);
         catList.add(newCat);

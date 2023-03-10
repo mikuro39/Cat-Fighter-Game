@@ -29,4 +29,7 @@ rarities
 and add it to my inventory of cats
 - As a user, I want to be able to use items to upgrade
 my cats' stats during battles
-  
+- As a user, I want to be given the option to save 
+my collection of my cats
+- As a user, I want to be able to load my collection
+of cats from file with the same stats if I want to
