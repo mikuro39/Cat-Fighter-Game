@@ -80,6 +80,8 @@ public class Cat implements Writable {
         this.name = newName;
     }
 
+    //MODIFIES: this
+    //EFFECTS: converts the cat data to json data
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

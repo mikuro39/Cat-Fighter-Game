@@ -73,6 +73,8 @@ public class CatCollection implements Writable {
         catList.add(cat);
     }
 
+    //MODIFIES: this
+    //EFFECTS: converts the cat collection data to json data
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -81,7 +83,7 @@ public class CatCollection implements Writable {
         return json;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    // EFFECTS: returns things in this cat collection as a JSON array
     private JSONArray catsToJson() {
         JSONArray jsonArray = new JSONArray();
 
@@ -92,10 +94,11 @@ public class CatCollection implements Writable {
         return jsonArray;
     }
 
-    // EFFECTS: returns an unmodifiable list of thingies in this workroom
+    // EFFECTS: returns an unmodifiable list of cats in this cat collection
     public List<Cat> getCats() {
         return Collections.unmodifiableList(catList);
     }
+
     public String getName() {
         return name;
     }

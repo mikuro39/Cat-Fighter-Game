@@ -33,3 +33,10 @@ my cats' stats during battles
 my collection of my cats
 - As a user, I want to be able to load my collection
 of cats from file with the same stats if I want to
+
+## Citations
+- Description: Java Serialization Demo
+- Author: Paul Carter
+- Date Created: Oct 16, 2021
+- Date Accessed: Mar 12, 2023
+- URL: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
