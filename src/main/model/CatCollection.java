@@ -96,4 +96,7 @@ public class CatCollection implements Writable {
     public List<Cat> getCats() {
         return Collections.unmodifiableList(catList);
     }
+    public String getName() {
+        return name;
+    }
 }
