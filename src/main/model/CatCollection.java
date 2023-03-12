@@ -1,15 +1,23 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 //represents a collection of Cats
-public class CatCollection {
+public class CatCollection implements Writable {
     private ArrayList<Cat> catList;
+    private String name;
 
     //MODIFIES: this
     //EFFECTS: instantiates catList as a new empty ArrayList of type Cat
-    public CatCollection() {
+    public CatCollection(String name) {
         catList = new ArrayList<>();
+        this.name = name;
     }
 
     //MODIFIES: this
@@ -63,5 +71,29 @@ public class CatCollection {
     //EFFECTS: adds a Cat to the collection
     public void addCatDebug(Cat cat) {
         catList.add(cat);
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("catList", catsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray catsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Cat t : catList) {
+            jsonArray.put(t.toJson());
+        }
+
+        return jsonArray;
+    }
+
+    // EFFECTS: returns an unmodifiable list of thingies in this workroom
+    public List<Cat> getCats() {
+        return Collections.unmodifiableList(catList);
     }
 }

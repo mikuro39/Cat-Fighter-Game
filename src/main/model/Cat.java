@@ -1,8 +1,11 @@
 package model;
 
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 //represents a Cat with name, color, rarity, size, power, and hp(hit points)
-public class Cat {
+public class Cat implements Writable {
     private String name;
     private final String color;
     private final int rarity;
@@ -21,6 +24,15 @@ public class Cat {
         size = 1;
         power = rarity;
         hp = rarity;
+    }
+
+    public Cat(String name, String color, int rarity, int size, int power, int hp) {
+        this.name = name;
+        this.color = color;
+        this.rarity = rarity;
+        this.size = size;
+        this.power = power;
+        this.hp = hp;
     }
 
     //MODIFIES: this
@@ -68,5 +80,15 @@ public class Cat {
         this.name = newName;
     }
 
-
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("color", color);
+        json.put("rarity", rarity);
+        json.put("size", size);
+        json.put("power", power);
+        json.put("hp", hp);
+        return json;
+    }
 }

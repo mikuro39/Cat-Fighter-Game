@@ -13,7 +13,7 @@ public class CatCollectionTest {
 
     @BeforeEach
     void runBefore() {
-        cc = new CatCollection();
+        cc = new CatCollection("hi");
     }
 
     @Test

@@ -13,7 +13,7 @@ public class FightTest {
 
     @BeforeEach
     void runBefore() {
-        cc = new CatCollection();
+        cc = new CatCollection("hi");
         bot = new Bot(1, 1);
         fight = new Fight(cc, bot);
     }
@@ -30,7 +30,7 @@ public class FightTest {
         fight.repairCats();
         assertEquals(cc.catListSize(), 1);
         assertTrue(fight.checkGameOver());
-        cc = new CatCollection();
+        cc = new CatCollection("");
         bot = new Bot(1, 1);
         fight = new Fight(cc, bot);
         cc.addCat("cat 5", 5);
@@ -39,7 +39,7 @@ public class FightTest {
         assertEquals(bot.getHP(), -4);
         assertEquals(result, "You won!");
         assertTrue(fight.checkGameOver());
-        cc = new CatCollection();
+        cc = new CatCollection("");
         bot = new Bot(10, 10);
         fight = new Fight(cc, bot);
         cc.addCat("cat 1", 1);
@@ -50,7 +50,7 @@ public class FightTest {
         assertEquals(fight.showDeadCats().size(), 1);
         assertEquals(fight.showDeadCats().get(0), "cat 1");
         assertTrue(fight.checkGameOver());
-        cc = new CatCollection();
+        cc = new CatCollection("");
         bot = new Bot(10, 10);
         fight = new Fight(cc, bot);
         cc.addCat("cat 1", 1);
@@ -65,7 +65,7 @@ public class FightTest {
         fight.repairCats();
         assertEquals(cc.catListSize(), 2);
         assertFalse(fight.checkGameOver());
-        cc = new CatCollection();
+        cc = new CatCollection("");
         bot = new Bot(1, 10);
         fight = new Fight(cc, bot);
         cc.addCat("cat 1", 5);

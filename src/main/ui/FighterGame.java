@@ -1,15 +1,26 @@
 package ui;
 
 import model.*;
+import persistence.JsonReader;
+import persistence.JsonWriter;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 //Cat Fighter Game application
 public class FighterGame {
-    private CatCollection catCollection = new CatCollection();
+    private static final String JSON_STORE = "./data/cats.json";
+    private CatCollection catCollection;
     private Scanner scanner;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     //EFFECTS: runs the cat fighter game application
-    public FighterGame() {
+    public FighterGame() throws FileNotFoundException {
+        catCollection = new CatCollection("hi");
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         playGame();
     }
 
@@ -30,8 +41,14 @@ public class FighterGame {
         System.out.println("1. collect new cat");
         System.out.println("2. view cat inventory");
         System.out.println("3. enter battle");
-        System.out.println("4. exit game");
+        System.out.println("4. save and exit game");
+        System.out.println("5. exit without saving");
+        System.out.println("6. load cat collection");
         String choice = scanner.nextLine();
+        menuChoices(choice);
+    }
+
+    private void menuChoices(String choice) {
         if (choice.equals("1")) {
             collectCat();
         } else if (choice.equals("2")) {
@@ -39,7 +56,12 @@ public class FighterGame {
         } else if (choice.equals("3")) {
             fighter();
         } else if (choice.equals("4")) {
+            saveWorkRoom();
+        } else if (choice.equals("5")) {
             System.out.println("Thanks for playing! See you next time.");
+        } else if (choice.equals("6")) {
+            loadWorkRoom();
+            mainMenu();
         } else {
             System.out.println("Sorry, you entered an invalid number. Sending you back to the main menu:");
             mainMenu();
@@ -66,7 +88,8 @@ public class FighterGame {
         } else {
             rarity = 5;
         }
-        Cat c = catCollection.addCat(name, rarity);
+        Cat c = new Cat(name, rarity);
+        catCollection.addCatDebug(c);
         System.out.println("Check out your new cat!");
         System.out.println("It has name " + name + ", color " + c.getColor()
                 + ", and rarity " + c.getRarity());
@@ -90,11 +113,14 @@ public class FighterGame {
         System.out.println("You have no cats yet!");
         System.out.println("Where would you like to go? ");
         System.out.println("1. main menu");
-        System.out.println("2. exit game");
+        System.out.println("2. save and exit game");
+        System.out.println("3. exit without saving");
         String choice = scanner.nextLine();
         if (choice.equals("1")) {
             mainMenu();
         } else if (choice.equals("2")) {
+            saveWorkRoom();
+        } else if (choice.equals("3")) {
             System.out.println("Thanks for playing! See you next time.");
         } else {
             System.out.println("Sorry, you entered an invalid number. Sending you back to the main menu:");
@@ -107,7 +133,7 @@ public class FighterGame {
     private void nonEmpty() {
         scanner = new Scanner(System.in);
         System.out.println("Here are your cats: " + catCollection.getCatNameList());
-        System.out.println("Where would you like to go? \n 1. view cat \n 2. main menu \n 3. exit game");
+        System.out.println("Where would you like to go? \n 1. view cat \n 2. main menu");
         String choice = scanner.nextLine();
         if (choice.equals("1")) {
             System.out.println("What is the id of the cat you would like to view? ");
@@ -119,8 +145,6 @@ public class FighterGame {
             editCat(cat, c);
         } else if (choice.equals("2")) {
             mainMenu();
-        } else if (choice.equals("3")) {
-            System.out.println("Thanks for playing! See you next time.");
         } else {
             System.out.println("Sorry, you entered an invalid number. Sending you back to the main menu:");
             mainMenu();
@@ -220,11 +244,14 @@ public class FighterGame {
         scanner = new Scanner(System.in);
         System.out.println("Where would you like to go? ");
         System.out.println("1. main menu");
-        System.out.println("2. exit game");
+        System.out.println("2. save and exit game");
+        System.out.println("3. exit without saving");
         String choice = scanner.nextLine();
         if (choice.equals("1")) {
             mainMenu();
         } else if (choice.equals("2")) {
+            saveWorkRoom();
+        } else if (choice.equals("3")) {
             System.out.println("Thanks for playing! See you next time.");
         } else {
             System.out.println("Sorry, you entered an invalid number. Sending you back to the main menu:");
@@ -289,5 +316,28 @@ public class FighterGame {
             upgradeItem = new UpgradeItem(0, 0);
         }
         return upgradeItem;
+    }
+
+    // EFFECTS: saves the workroom to file
+    private void saveWorkRoom() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(catCollection);
+            jsonWriter.close();
+            System.out.println("Saved to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadWorkRoom() {
+        try {
+            catCollection = jsonReader.read();
+            System.out.println("Loaded from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 }
