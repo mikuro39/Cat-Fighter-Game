@@ -35,6 +35,11 @@ public class CatCollection implements Writable {
         catList.remove(j);
     }
 
+    public void removeCatDebug(Cat c) {
+        int j = catList.indexOf(c);
+        catList.remove(j);
+    }
+
     //MODIFIES: this
     //EFFECTS: adds a cat to the collection with HP at 1
     public void addDeadCat(Cat cat) {

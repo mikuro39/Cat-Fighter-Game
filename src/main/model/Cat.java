@@ -26,6 +26,8 @@ public class Cat implements Writable {
         hp = rarity;
     }
 
+    //MODIFIES: this
+    //EFFECTS: instantiates a Cat with given name, rarity, size, power, and hp
     public Cat(String name, String color, int rarity, int size, int power, int hp) {
         this.name = name;
         this.color = color;

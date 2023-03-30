@@ -40,3 +40,26 @@ of cats from file with the same stats if I want to
 - Date Created: Oct 16, 2021
 - Date Accessed: Mar 12, 2023
 - URL: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+
+# Instructions for Grader
+- You can generate the first required action related
+to adding cats to a collection of cats by clicking the 
+"Create new cat" button and entering in a name, then
+pressing the button labelled "Done!". Then, press the
+"view cat collection" button, and you will be able to
+see that a cat has been added to the collection.
+- You can generate the second required action
+related to adding cats to a collection by clicking the
+"view cat collection" button, then double-clicking on
+any of the names in the list of cats. Then, click the
+"delete cat" button. Then, press the "main menu" button.
+Then, press the "view cat collection" button again
+to verify that the cat has been deleted.
+- You can locate my visual component by clicking the
+  "Create new cat" button and entering in a name, then
+  pressing the button labelled "Done!". the next screen
+that shows up will include an image.
+- You can save the state of my application by
+clicking the "Save and exit" button.
+- You can reload the state of my application by
+clicking the "load cat collection" button.
