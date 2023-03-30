@@ -35,6 +35,9 @@ public class CatCollection implements Writable {
         catList.remove(j);
     }
 
+    //REQUIRES: c is in catList
+    //MODIFIES: this
+    //EFFECTS: removes c from catList
     public void removeCatDebug(Cat c) {
         int j = catList.indexOf(c);
         catList.remove(j);

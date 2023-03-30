@@ -58,7 +58,7 @@ public class JsonReader {
     }
 
     // MODIFIES: cc
-    // EFFECTS: parses thingy from JSON object and adds it to cat collection
+    // EFFECTS: parses cat from JSON object and adds it to cat collection
     private void addCat(CatCollection cc, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         String color = jsonObject.getString("color");
