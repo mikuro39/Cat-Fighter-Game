@@ -6,6 +6,8 @@ import persistence.JsonWriter;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 //Cat Fighter Game application
@@ -328,6 +330,7 @@ public class FighterGame {
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
         }
+
     }
 
     // MODIFIES: this

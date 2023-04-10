@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Fight {
     private CatCollection catCollection;
     private Bot bot;
-    boolean gameOver;
+    private boolean gameOver;
     private ArrayList<Cat> deadCats;
 
     //MODIFIES: this

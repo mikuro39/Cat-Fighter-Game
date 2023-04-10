@@ -25,6 +25,7 @@ public class CatCollection implements Writable {
     public Cat addCat(String name, int rarity) {
         Cat newCat = new Cat(name, rarity);
         catList.add(newCat);
+        EventLog.getInstance().logEvent(new Event("added cat"));
         return newCat;
     }
 
@@ -32,6 +33,7 @@ public class CatCollection implements Writable {
     //MODIFIES: this
     //EFFECTS: searches for cat in catList and removes if found
     public void removeCat(int j) {
+        EventLog.getInstance().logEvent(new Event("removed cat"));
         catList.remove(j);
     }
 
@@ -41,6 +43,7 @@ public class CatCollection implements Writable {
     public void removeCatDebug(Cat c) {
         int j = catList.indexOf(c);
         catList.remove(j);
+        EventLog.getInstance().logEvent(new Event("removed cat"));
     }
 
     //MODIFIES: this
@@ -79,6 +82,7 @@ public class CatCollection implements Writable {
     //EFFECTS: adds a Cat to the collection
     public void addCatDebug(Cat cat) {
         catList.add(cat);
+        EventLog.getInstance().logEvent(new Event("added cat"));
     }
 
     //MODIFIES: this

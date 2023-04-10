@@ -63,3 +63,28 @@ that shows up will include an image.
 clicking the "Save and exit" button.
 - You can reload the state of my application by
 clicking the "load cat collection" button.
+
+# Phase 4: Task 2
+Sat Apr 08 15:49:20 PDT 2023
+added cat
+
+Sat Apr 08 15:49:22 PDT 2023
+added cat
+
+Sat Apr 08 15:49:25 PDT 2023
+added cat
+
+Sat Apr 08 15:49:29 PDT 2023
+removed cat
+
+Sat Apr 08 15:49:32 PDT 2023
+added cat
+
+Sat Apr 08 15:49:34 PDT 2023
+removed cat
+
+Sat Apr 08 15:49:36 PDT 2023
+removed cat
+
+Sat Apr 08 15:49:36 PDT 2023
+removed cat

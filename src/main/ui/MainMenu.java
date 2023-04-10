@@ -1,6 +1,7 @@
 package ui;
 
 import model.*;
+import model.Event;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -8,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 //GUI for Cat Fighter Game
@@ -22,6 +24,7 @@ public class MainMenu extends JFrame {
     private JButton button6;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
+    private Window window = new Window();
 
     //MODIFIES: this
     //EFFECTS: creates a JsonWriter and JsonReader, then sends user to the main menu
@@ -44,6 +47,7 @@ public class MainMenu extends JFrame {
         label.setBackground(Color.decode("#c1dcf7"));
         menu.add(label, BorderLayout.NORTH);
         menu.add(makeButtonPanel(menu), BorderLayout.CENTER);
+        menu.addWindowListener(window);
         menu.setVisible(true);
     }
 
@@ -70,10 +74,11 @@ public class MainMenu extends JFrame {
             menu.dispose();
         });
         addButtons(menu);
+        newButtons(menu);
         return buttonPanel;
     }
 
-    //EFFECTS: adds action listeners for the other 5 menu buttons
+    //EFFECTS: adds action listeners for the other 2 menu buttons
     private void addButtons(JFrame menu) {
         button2.addActionListener(b -> {
             if (catCollection.catListSize() != 0) {
@@ -87,16 +92,32 @@ public class MainMenu extends JFrame {
             enterBattle();
             menu.dispose();
         });
+    }
+
+    //EFFECTS: adds action listeners for the other 3 menu buttons
+    private void newButtons(JFrame menu) {
         button4.addActionListener(b3 -> {
+            log();
             saveAndExit();
-            menu.dispose();
         });
         button5.addActionListener(b4 -> {
+            log();
             exitWithoutSaving();
         });
         button6.addActionListener(b5 -> {
+            log();
             loadCatCollection();
         });
+    }
+
+    //EFFECTS: prints out a list of all the events in the EventLog
+    private void log() {
+        List<Event> l = new ArrayList<Event>();
+        EventLog el = EventLog.getInstance();
+        for (Event next : el) {
+            l.add(next);
+            System.out.println(next.toString());
+        }
     }
 
     //MODIFIES: this
@@ -116,6 +137,7 @@ public class MainMenu extends JFrame {
         panel.add(textField, BorderLayout.CENTER);
         panel.add(button1, BorderLayout.SOUTH);
         createNewCat.add(panel);
+        createNewCat.addWindowListener(window);
         createNewCat.setVisible(true);
     }
 
@@ -160,6 +182,7 @@ public class MainMenu extends JFrame {
         button1.addActionListener(e -> returnToMenu(frame));
         frame.add(label, BorderLayout.CENTER);
         frame.add(button1, BorderLayout.SOUTH);
+        frame.addWindowListener(window);
         frame.setVisible(true);
     }
 
@@ -227,6 +250,7 @@ public class MainMenu extends JFrame {
         button2.addActionListener(e -> returnToMenu(listFrame));
         listFrame.add(scrollPane, BorderLayout.CENTER);
         listFrame.add(buttonPanel, BorderLayout.SOUTH);
+        listFrame.addWindowListener(window);
         listFrame.setVisible(true);
     }
 
@@ -264,6 +288,7 @@ public class MainMenu extends JFrame {
         buttonSetters(cat, catStats, buttonPanel);
         catStats.add(fullPanel, BorderLayout.CENTER);
         catStats.add(buttonPanel, BorderLayout.SOUTH);
+        catStats.addWindowListener(window);
         catStats.setVisible(true);
     }
 
@@ -325,6 +350,15 @@ public class MainMenu extends JFrame {
         textLabel.setBackground(Color.decode("#c1dcf7"));
         inputPanel.add(textLabel, BorderLayout.NORTH);
         button1 = new JButton("Done!");
+        addListener(textField, cat, inputFrame);
+        inputPanel.add(button1, BorderLayout.SOUTH);
+        inputFrame.add(inputPanel);
+        inputFrame.addWindowListener(window);
+        inputFrame.setVisible(true);
+    }
+
+    //EFFECTS: adds action listeners for button 1
+    private void addListener(JTextField textField, Cat cat, JFrame inputFrame) {
         button1.addActionListener(e -> {
             String inputText = textField.getText();
             cat.changeName(inputText);
@@ -332,9 +366,6 @@ public class MainMenu extends JFrame {
             confirmationScreen(cat, "Changed cat's name", "Your cat's name has been successfully changed to "
                     + cat.getName());
         });
-        inputPanel.add(button1, BorderLayout.SOUTH);
-        inputFrame.add(inputPanel);
-        inputFrame.setVisible(true);
     }
 
     //MODIFIES: this
@@ -353,20 +384,26 @@ public class MainMenu extends JFrame {
         buttonPanel.add(button1);
         buttonPanel.add(button2);
         buttonPanel.add(button3);
+        listeners(cat, menu);
         JLabel label = new JLabel("Please choose the type of food you would like to feed your cat!");
         label.setHorizontalAlignment(JLabel.CENTER);
         label.setOpaque(true);
         label.setBackground(Color.decode("#c1dcf7"));
         menu.add(label, BorderLayout.NORTH);
         menu.add(buttonPanel, BorderLayout.CENTER);
-        button1.addActionListener(e -> feedCat(cat, menu, 1));
-        button2.addActionListener(e -> feedCat(cat, menu, 15));
-        button3.addActionListener(e -> feedCat(cat, menu, 10));
+        menu.addWindowListener(window);
         menu.setVisible(true);
     }
 
+    //EFFECTS: adds action listeners for the other 3 menu buttons
+    private void listeners(Cat cat, JFrame menu) {
+        button1.addActionListener(e -> feedCatDone(cat, menu, 1));
+        button2.addActionListener(e -> feedCatDone(cat, menu, 15));
+        button3.addActionListener(e -> feedCatDone(cat, menu, 10));
+    }
+
     //EFFECTS: feeds the cat and shows a confirmation screen
-    private void feedCat(Cat cat, JFrame menu, int i) {
+    private void feedCatDone(Cat cat, JFrame menu, int i) {
         cat.feedCat(new Food(i));
         confirmationScreen(cat, "Fed cat", "Successfully fed cat. Its size is now " + cat.getSize());
         menu.dispose();
@@ -398,6 +435,7 @@ public class MainMenu extends JFrame {
             buttonPanel.add(button1);
             menu.add(label, BorderLayout.CENTER);
             menu.add(buttonPanel, BorderLayout.SOUTH);
+            menu.addWindowListener(window);
             menu.setVisible(true);
         } else {
             initializeBot();
@@ -426,10 +464,16 @@ public class MainMenu extends JFrame {
         label.setBackground(Color.decode("#c1dcf7"));
         menu.add(label, BorderLayout.NORTH);
         menu.add(buttonPanel, BorderLayout.CENTER);
+        bots(menu);
+        menu.addWindowListener(window);
+        menu.setVisible(true);
+    }
+
+    //EFFECTS: adds action listeners for the other 3 menu buttons
+    private void bots(JFrame menu) {
         button1.addActionListener(e -> createBot(menu, 1));
         button2.addActionListener(e -> createBot(menu, 10));
         button3.addActionListener(e -> createBot(menu, 100));
-        menu.setVisible(true);
     }
 
     //EFFECTS: creates a fight between the cats and bot
@@ -449,6 +493,7 @@ public class MainMenu extends JFrame {
         JPanel fightingPanel = createFightingPanel(fight, bot, frame);
         fightingPanel.setBackground(Color.decode("#c1dcf7"));
         frame.add(fightingPanel);
+        frame.addWindowListener(window);
         frame.setVisible(true);
     }
 
@@ -511,7 +556,6 @@ public class MainMenu extends JFrame {
         button2.addActionListener(e -> {
             initializeFight(fight, bot);
             frame.dispose();
-            //createFightingPanel(fight, bot, frame);
         });
     }
 
@@ -538,6 +582,7 @@ public class MainMenu extends JFrame {
         panel.add(buttonPanel, BorderLayout.CENTER);
         panel.add(label, BorderLayout.NORTH);
         frame.add(panel, BorderLayout.CENTER);
+        frame.addWindowListener(window);
         frame.setVisible(true);
     }
 
@@ -594,10 +639,16 @@ public class MainMenu extends JFrame {
         label.setBackground(Color.decode("#c1dcf7"));
         menu.add(label, BorderLayout.NORTH);
         menu.add(buttonPanel, BorderLayout.CENTER);
+        botListener(cat, menu, fight, bot);
+        menu.addWindowListener(window);
+        menu.setVisible(true);
+    }
+
+    //EFFECTS: adds action listeners for the other 3 menu buttons
+    private void botListener(Cat cat, JFrame menu, Fight fight, Bot bot) {
         button1.addActionListener(e -> upgrade(cat, menu, 1, fight, bot));
         button2.addActionListener(e -> upgrade(cat, menu, 15, fight, bot));
         button3.addActionListener(e -> upgrade(cat, menu, 10, fight, bot));
-        menu.setVisible(true);
     }
 
     //EFFECTS: upgrades the cat with the item and then closes the upgrade menu
