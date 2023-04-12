@@ -88,3 +88,38 @@ removed cat
 
 Sat Apr 08 15:49:36 PDT 2023
 removed cat
+
+# Phase 4: Task 3
+Upon reflection of my UML diagram, I noticed that my Fight
+class lacked cohesion, as it was 
+responsible for both managing the cat collection and 
+completing one round of the fight. These are two separate 
+responsibilities and they should be placed in different 
+classes. As I was working on the project and adding
+more functionality to it, I continued to add
+more methods to the Fight class, and as a result
+it began to lose its cohesion. To address this, 
+I would refactor my project by splitting the Fight class into
+two separate classes - one for managing the cat collection
+and another for the methods involved in the result of 
+the fight. By doing so, I can improve the overall 
+cohesion of my project by ensuring each class is 
+responsible for a single task.
+
+
+Although I intentionally included all UI elements in one 
+class for both the console-based and graphical 
+interfaces, I realized that splitting these 
+functionalities into separate classes would be greatly
+beneficial towards increasing cohesion. 
+As I worked on the GUI, I created
+many methods related to each aspect of the game, 
+causing the MainMenu class to have a high level of 
+coupling. I would refactor this class and split it 
+into multiple classes, each with a different 
+functionality, such as creating new cats, 
+editing the cat collection, engaging in battle, and 
+saving/loading the game. This would create a more 
+cohesive program design, as each class would 
+have a single responsibility and overall contribute to a
+more organized program design.
